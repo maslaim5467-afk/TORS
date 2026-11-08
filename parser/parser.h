@@ -1,3 +1,4 @@
+
 #ifndef PARSER_H
 #define PARSER_H
 
@@ -7,12 +8,20 @@
 #include "../lexer/lexer.h"
 
 typedef enum {
-    AST_PRINT_STATEMENT
+    AST_PRINT_STATEMENT,
+    AST_VARIABLE_DECLARATION
 } ASTNodeType;
 
 typedef struct {
     ASTNodeType type;
+
+    /* Print statement */
     Token value;
+
+    /* Variable declaration */
+    Token name;
+    Token data_type;
+    Token initializer;
 } ASTNode;
 
 typedef struct {
