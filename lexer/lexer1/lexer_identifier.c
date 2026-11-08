@@ -1,5 +1,5 @@
-#include "lexer_identifier.h"
 
+#include "lexer_identifier.h"
 #include <stdbool.h>
 #include <string.h>
 
@@ -19,7 +19,7 @@ TokenType lexer_identify_word(
         memcmp(start, "چاپ_ف", length) == 0)
         return TOKEN_PRINTF;
 
-    return TOKEN_UNKNOWN;
+    return TOKEN_IDENTIFIER;
 }
 
 static bool is_word_boundary(Lexer *lexer)
@@ -31,7 +31,8 @@ static bool is_word_boundary(Lexer *lexer)
         c == '\r' || c == '\n' ||
         c == '(' || c == ')' ||
         c == '{' || c == '}' ||
-        c == '"' || c == ';')
+        c == '"' || c == ';' ||
+        c == '=')
         return true;
 
     if (c == '-' && lexer_peek(lexer) == '>')

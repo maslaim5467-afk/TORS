@@ -27,6 +27,35 @@ Token lexer_next(Lexer *lexer)
             lexer, TOKEN_EOF, start, line, column
         );
     }
+  
+    if (c == '=') {
+        lexer_advance(lexer);
+
+        return lexer_make_token(
+            lexer, TOKEN_ASSIGN, start, line, column
+        );
+    }
+
+    if (c >= '0' && c <= '9') {
+        while (lexer_current(lexer) >= '0' &&
+               lexer_current(lexer) <= '9') {
+            lexer_advance(lexer);
+        }
+
+        if (lexer_current(lexer) == 'i') {
+            lexer_advance(lexer);
+
+            return lexer_make_token(
+                lexer, TOKEN_UNSIGNED_INT32,
+                start, line, column
+            );
+        }
+
+        return lexer_make_token(
+            lexer, TOKEN_INTEGER_LITERAL,
+            start, line, column
+        );
+    }
 
     if (c == '-' && lexer_peek(lexer) == '>') {
         lexer_advance(lexer);
@@ -93,6 +122,10 @@ const char *token_type_name(TokenType type)
         case TOKEN_RPAREN: return "RPAREN";
         case TOKEN_SEMICOLON: return "SEMICOLON";
         case TOKEN_EOF: return "EOF";
+        case TOKEN_IDENTIFIER: return "IDENTIFIER";
+        case TOKEN_INTEGER_LITERAL: return "INTEGER_LITERAL";
+        case TOKEN_UNSIGNED_INT32: return "UNSIGNED_INT32";
+        case TOKEN_ASSIGN: return "ASSIGN";
         case TOKEN_UNKNOWN: return "UNKNOWN";
     }
 

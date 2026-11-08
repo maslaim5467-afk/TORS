@@ -1,20 +1,27 @@
+
 #ifndef LEXER_H
 #define LEXER_H
 
 #include <stddef.h>
 
 typedef enum {
-    TOKEN_INT_TYPE,       // ص
-    TOKEN_ARROW,          // ->
-    TOKEN_MAIN,           // شروع
-    TOKEN_PRINTF,         // چاپ_ف
-    TOKEN_STRING,         // "سلام"
+    TOKEN_INT_TYPE,          // ص
+    TOKEN_ARROW,              // ->
+    TOKEN_MAIN,               // شروع
+    TOKEN_PRINTF,             // چاپ_ف
 
-    TOKEN_LBRACE,         // {
-    TOKEN_RBRACE,         // }
-    TOKEN_LPAREN,         // (
-    TOKEN_RPAREN,         // )
-    TOKEN_SEMICOLON,      // ؛
+    TOKEN_IDENTIFIER,         // جعبه
+    TOKEN_INTEGER_LITERAL,    // 43
+    TOKEN_UNSIGNED_INT32,     // 32i
+
+    TOKEN_ASSIGN,             // =
+    TOKEN_STRING,             // "سلام"
+
+    TOKEN_LBRACE,             // {
+    TOKEN_RBRACE,             // }
+    TOKEN_LPAREN,             // (
+    TOKEN_RPAREN,             // )
+    TOKEN_SEMICOLON,          // ؛
 
     TOKEN_EOF,
     TOKEN_UNKNOWN
